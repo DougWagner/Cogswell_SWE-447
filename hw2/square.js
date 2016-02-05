@@ -14,9 +14,10 @@ var square = {
     colors : {
         values: new Float32Array([  
             1.0, 0.0, 0.0,
-            0.0, 1.0, 0.0,
-            0.0, 0.0, 1.0,
-            1.0, 1.0, 0.0
+            0.0, 1.0, 1.0,
+            1.0, 0.0, 1.0,
+            0.0, 0.0, 1.0
+            
          ]),
         numComponents : 3
     }
@@ -29,7 +30,8 @@ function init() {
 	gl.clearColor(0.0, 1.0, 0.0, 1.0);
 	gl.clear(gl.COLOR_BUFFER_BIT)
     var program = initShaders(gl, "vertex-shader", "fragment-shader");
-    gl.useProgram(program);
+    gl.useProgram(program)
+    
     square.positions.buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, square.positions.buffer);
     gl.bufferData(gl.ARRAY_BUFFER, square.positions.values, gl.STATIC_DRAW);
