@@ -1,0 +1,43 @@
+<!Doctype html>
+<html>
+    <head>
+        <script type="text/javascript" src="Common/webgl-utils.js"></script>
+        <script type="text/javascript" src="Common/initShaders.js"></script>
+        <script type="text/javascript" src="Common/MV.js"></script>
+        <script type="text/javascript" src="Common/MatrixStack.js"></script>
+        <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec2 a_position;
+        uniform vec2 u_resolution;
+        
+        void main() {
+            vec2 zeroToOne = a_position / u_resolution;
+            vec2 zeroToTwo = zeroToOne * 2.0;
+            vec2 clipSpace = zeroToTwo - 1.0;
+            gl_Position = vec4(clipSpace, 0, 1);
+        }
+        </script>
+        <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+        uniform vec4 u_color;
+        
+        void main() {
+            gl_FragColor = u_color;
+        }
+        </script>
+        <script type="text/javascript" src="view.js"></script>
+    </head>
+    <body>
+        <canvas id="webgl-canvas" width="1000" height="550">
+        </canvas>
+        <br>
+        <button id="RandomizeArray" onclick="randomizeArray();">Shuffle</button>
+        <button id="InsertionSort" onclick="insertionButton();">Insertion Sort</button>
+        <button id="BubbleSort" onclick="bubbleButton();">Bubble Sort</button>
+        <button id="RadixSort" onclick="radixButton();">Radix Sort</button>
+        <button id="BogoSort" onclick="bogoButton();">Bogo Sort</button>
+        <br>
+        <br>
+        Algorithm Speed (in milliseconds):
+        <input type="number" id="speed" min="0" max="1000">
+    </body>
+</html>
